@@ -72,8 +72,7 @@ def get_forms_list(full_refresh = False):
     pardot = Pardot(credentials)
 
     # Set date after which we pull changes to forms
-    #
-    
+
     if full_refresh:
         last_updated = datetime.datetime.min.strftime('%Y-%m-%d %H:%M:%S')
     else:
