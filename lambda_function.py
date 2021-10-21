@@ -113,5 +113,3 @@ def get_forms_list(full_refresh = False):
 
 def lambda_handler(event, context):
     get_forms_list(full_refresh = False)
-
-lambda_handler(None, None)
