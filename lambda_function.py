@@ -96,8 +96,15 @@ def get_forms_list(full_refresh = False):
             print('No results left to process. Done.')
             break
         
-        df = pd.DataFrame(resp_parsed['rsp']['result']['form'])
-        
+        data = resp_parsed['rsp']['result']['form']
+        if int(resp_parsed['rsp']['result']['total_results']) == 1:
+            # If we are only loading 1 record from a dict, we need to account
+            # for pandas behavior as mentioned here: 
+            # https://stackoverflow.com/questions/69727128/pandas-incorrectly-reading-nested-ordereddict-with-len-1/69727295#69727295
+            data = [data]
+
+        df = pd.DataFrame(data)
+
         # Convert ordered dict in campaign field to regular dict
         df.campaign = df.campaign.apply(lambda x: dict(x))
         
@@ -113,3 +120,6 @@ def get_forms_list(full_refresh = False):
 
 def lambda_handler(event, context):
     get_forms_list(full_refresh = False)
+
+# Uncomment for local dev
+#lambda_handler(None, None)
