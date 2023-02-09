@@ -68,8 +68,9 @@ def get_forms_list(full_refresh = False):
         region_name='us-west-2'
     )
 
-    credentials = json.loads(secrets_client.get_secret_value(SecretId='credentials/pardot')['SecretString'])
-    pardot = Pardot(credentials)
+    creds = json.loads(secrets_client.get_secret_value(SecretId='credentials/salesforce')['SecretString'])
+
+    pardot = Pardot(creds)
 
     # Set date after which we pull changes to forms
 
