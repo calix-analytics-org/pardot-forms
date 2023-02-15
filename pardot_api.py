@@ -11,7 +11,7 @@ class Pardot():
         host = 'login.salesforce.com'
         endpoint = '/services/oauth2/token'
         business_unit = credentials['business_unit']
-        combined_pw_token = f"{creds['password']}{creds['security_token']}" #Used below as the password param for auth to salesforce
+        combined_pw_token = f"{credentials['password']}{credentials['security_token']}" #Used below as the password param for auth to salesforce
        
         #  Get access token
         resp = self.s.post(f"https://{host}{endpoint}?grant_type={credentials['grant_type']}&client_id={credentials['client_id']}&client_secret={credentials['client_secret']}&username={credentials['username']}&password={combined_pw_token}")
