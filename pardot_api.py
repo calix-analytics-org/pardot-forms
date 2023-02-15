@@ -10,7 +10,7 @@ class Pardot():
         
         host = 'login.salesforce.com'
         endpoint = '/services/oauth2/token'
-        business_unit = credentials['business_unit']
+        business_unit = credentials['business_unit_id']
         combined_pw_token = f"{credentials['password']}{credentials['security_token']}" #Used below as the password param for auth to salesforce
        
         #  Get access token
